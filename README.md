@@ -5,5 +5,7 @@ Este temario va a consistir en crear una pagina web estatica con los siguientes 
 - linux mint
 - virtualbox
 - oracle
+
 El segundo tema no se realizara
+
 Gracias por su tiempo.
