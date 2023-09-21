@@ -8,4 +8,4 @@ Este temario va a consistir en crear una pagina web estatica con los siguientes 
 
 El segundo tema no se realizara
 
-Gracias por su tiempo.
+Gracias por su tiempo
