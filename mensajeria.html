@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Red Social</title>
+</head>
+<body>
+    <h1>Red Social</h1>
+    
+    <input type="text" id="mensaje" placeholder="Escribe tu mensaje">
+    <button onclick="agregarMensaje()">Publicar</button>
+    
+    <div id="mensajes">
+        <!-- Los mensajes se mostrarán aquí -->
+    </div>
+
+    <script>
+        const mensajes = []; // Array para almacenar los mensajes
+
+        function agregarMensaje() {
+            const mensajeInput = document.getElementById("mensaje");
+            const mensaje = mensajeInput.value;
+
+            if (mensaje.trim() === "") {
+                alert("Por favor, escribe un mensaje válido.");
+                return;
+            }
+
+            mensajes.push(mensaje);
+            mensajeInput.value = "";
+
+            mostrarMensajes();
+        }
+
+        function borrarMensaje(index) {
+            mensajes.splice(index, 1);
+            mostrarMensajes();
+        }
+
+        function mostrarMensajes() {
+            const mensajesDiv = document.getElementById("mensajes");
+            mensajesDiv.innerHTML = "";
+
+            // Ordenar los mensajes de manera alfabética
+            const mensajesOrdenados = mensajes.slice().sort();
+
+            mensajesOrdenados.forEach((mensaje, index) => {
+                const mensajeDiv = document.createElement("div");
+                mensajeDiv.innerHTML = `
+                    <span>${mensaje}</span>
+                    <button onclick="borrarMensaje(${index})">&#128465;</button>
+                `;
+                mensajesDiv.appendChild(mensajeDiv);
+            });
+        }
+    </script>
+</body>
+</html>

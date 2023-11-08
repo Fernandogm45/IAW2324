@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora de IMC</title>
+</head>
+<body>
+    <h1>Calculadora de Índice de Masa Corporal (IMC)</h1>
+    
+    <label for="altura">Altura (cm):</label>
+    <input type="text" id="altura" placeholder="Ingrese su altura en cm">
+    
+    <label for="masa">Masa (kg):</label>
+    <input type="text" id="masa" placeholder="Ingrese su masa en kg">
+    
+    <button onclick="calcularIMC()">Calcular IMC</button>
+    
+    <div id="resultado"></div>
+
+    <script>
+        function calcularIMC() {
+            const alturaInput = document.getElementById("altura");
+            const masaInput = document.getElementById("masa");
+            const resultadoDiv = document.getElementById("resultado");
+
+            const altura = parseFloat(alturaInput.value);
+            const masa = parseFloat(masaInput.value);
+
+            if (isNaN(altura) || isNaN(masa)) {
+                resultadoDiv.innerHTML = "Por favor, ingrese valores válidos para la altura y la masa.";
+            } else {
+                const alturaMetros = altura / 100;
+                const imc = masa / (alturaMetros * alturaMetros);
+                let mensaje = "Su IMC es " + imc.toFixed(2) + ". ";
+
+                if (imc < 18.5) {
+                    mensaje += "Usted está bajo peso.";
+                } else if (imc < 24.9) {
+                    mensaje += "Usted tiene un peso saludable.";
+                } else if (imc < 29.9) {
+                    mensaje += "Usted tiene sobrepeso.";
+                } else {
+                    mensaje += "Usted tiene obesidad.";
+                }
+
+                resultadoDiv.innerHTML = mensaje;
+            }
+        }
+    </script>
+</body>
+</html>
