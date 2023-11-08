@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Juego de reaccion</title>
+    <style>
+        .shape {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Juego de reacción</h1>
+    <p>Haz clic en la forma lo mas rapido posible cuando aparezca.</p>
+    <p>Tiempo de reaccion: <span id="reactionTime">0</span> ms</p>
+
+    <script>
+        var startTime;
+        var reactionTime = 0;
+
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function createShape() {
+            var shape = document.createElement('div');
+            shape.className = 'shape';
+            shape.style.backgroundColor = getRandomColor();
+            shape.style.left = Math.random() * 400 + 'px';
+            shape.style.top = Math.random() * 400 + 'px';
+            shape.onclick = function() {
+                var endTime = new Date().getTime();
+                reactionTime = endTime - startTime;
+                document.getElementById('reactionTime').textContent = reactionTime + ' ms';
+                document.body.removeChild(shape);
+                setTimeout(createShape, Math.random() * 2000); // Nuevo shape después de un intervalo aleatorio
+            }
+            document.body.appendChild(shape);
+            startTime = new Date().getTime();
+        }
+
+        setTimeout(createShape, Math.random() * 2000); // Comenzar el juego con un intervalo aleatorio
+    </script>
+</body>
+</html>

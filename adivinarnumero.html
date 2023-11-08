@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Adivina el número</title>
+</head>
+<body>
+    <h1>Adivina el número entre 0 y 5</h1>
+    <p>Introduce un número entre 0 y 5:</p>
+    <input type="text" id="userGuess">
+    <button onclick="adivinarNumero()">Adivinar</button>
+    <p id="resultado"></p>
+
+    <script>
+        function adivinarNumero() {
+            // Genera un número aleatorio entre 0 y 5
+            var numeroAleatorio = Math.floor(Math.random() * 6);
+
+            // Obtiene el número ingresado por el usuario
+            var userGuess = parseInt(document.getElementById('userGuess').value);
+
+            // Verifica si el usuario adivinó el número
+            if (userGuess >= 0 && userGuess <= 5) {
+                if (userGuess === numeroAleatorio) {
+                    document.getElementById('resultado').textContent = "¡Has acertado! El número era " + numeroAleatorio;
+                } else {
+                    document.getElementById('resultado').textContent = "Lo siento, no has acertado. El número era " + numeroAleatorio;
+                }
+            } else {
+                document.getElementById('resultado').textContent = "Por favor, ingresa un número válido entre 0 y 5.";
+            }
+        }
+    </script>
+</body>
+</html>
